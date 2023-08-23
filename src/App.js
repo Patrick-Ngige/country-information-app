@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.css";
 import axios from 'axios';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [results, setResults] = useState([]);
+  const [weather, setWeather] = useState(null);
 
   const handleSearch = async () => {
     if (!searchQuery) return;
@@ -28,6 +29,26 @@ function App() {
 
   const CountryDetails = ({country}) => {
     const languages = Object.values(country.languages).join(',')
+    
+    useEffect(() => {
+      async function fetchWeather() {
+        try {
+          const response = await axios.get(`https://api.openweathermap.org/geo/1.0/direct`, {
+            params: {
+              q: country.capital,
+              limit: 5,
+              appid: '7dbabaa47da382174b2dc3bdeb1dc253',
+              units: 'metric'
+            },
+          })
+
+          setWeather(response.data)
+        }catch (error) {
+          console.error('Error fetching weather data:', error)
+        }
+      }
+      fetchWeather()
+    }, [country.capital])
 
       return(
         <div>
@@ -40,6 +61,14 @@ function App() {
             alt={`${country.name.common} Flags`}
             width="150"
           />
+          {weather && (
+            <div>
+              <h3>Weather in {country.capital}</h3>
+              <p>Temperature: {weather.main.temp} degrees</p>
+              <p>Weather:{weather.weather[0].description}</p>
+              <p>Humidity: {weather.main.humidity}%</p>
+            </div>
+          )}
         </div>
       );
   };
