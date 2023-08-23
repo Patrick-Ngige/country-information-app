@@ -38,4 +38,16 @@ function App() {
       )
     }
   }
+
+  return (
+    <div className="App">
+      <h1>Country Information App</h1>
+      <input 
+      type="text"
+      placeholder="Search for a country"
+      value={searchQuery}
+      onChange={e => setSearchQuery(e.target.value)}
+      />
+    </div>
+  )
 }
