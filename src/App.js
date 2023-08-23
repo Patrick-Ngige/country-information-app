@@ -26,9 +26,10 @@ function App() {
     }
   }
 
-  
+  const CountryDetails = ({country}) => {
+    const languages = Object.values(country.languages).join(',')
 
-      setResults(
+      return(
         <div>
           <h2>{country.name.common}</h2>
           <p>Area: {country.area} km^2</p>
@@ -41,9 +42,6 @@ function App() {
           />
         </div>
       );
-    } else {
-      setResults(<p>No matching countries found.</p>);
-    }
   };
 
   return (
@@ -61,12 +59,12 @@ function App() {
           <p>{country.name.common}
           <button onClick={() => setResults([country])}>Show</button>
           </p>
-          {results.length === 1 && <CountryDetail country={country} />}
+          {results.length === 1 && <CountryDetails country={country} />}
         </div>
       ))}
       </div>
     </div>
   );
-}
+};
 
 export default App;
