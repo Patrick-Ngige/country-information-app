@@ -29,7 +29,8 @@ function App() {
       setResults(
         <div>
           <h2>{country.name.common}</h2>
-          <p>Capital: {country.capital} km^2</p>
+          <p>Area: {country.area} km^2</p>
+          <p>Capital: {country.capital} </p>
           <p>Languages: {languages}</p>
           <img
             src={country.flags.png}
