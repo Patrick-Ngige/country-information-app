@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./index.css";
+import axios from 'axios';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -8,12 +9,13 @@ function App() {
   const handleSearch = async () => {
     if (!searchQuery) return;
 
-    const response = await fetch(
+    try{
+    const response = await axios.get(
       `https://restcountries.com/v3.1/name/${searchQuery}`
     );
-    const data = await response.json();
+    const data = response.data;
 
-    if (data.length > 10) {
+    if (data.length > 0) {
       setResults(
         <p>Too many matches. Please make your query more specific.</p>
       );
@@ -54,7 +56,15 @@ function App() {
         onChange={(e) => setSearchQuery(e.target.value)}
       />
       <button onClick={handleSearch}>Search</button>
-      <div className="results">{results}</div>
+      <div className="results">{results.map((country, index) => (
+        <div key={index}>
+          <p>{country.name.common}
+          <button onClick={() => setResults([country])}>Show</button>
+          </p>
+          {results.length === 1 && <CountryDetail country={country} />}
+        </div>
+      ))}
+      </div>
     </div>
   );
 }
