@@ -16,17 +16,17 @@ function App() {
     const data = response.data;
 
     if (data.length > 0) {
-      setResults(
-        <p>Too many matches. Please make your query more specific.</p>
-      );
-    } else if (data.length > 1) {
-      const countriesList = data
-        .map((country) => country.name.common)
-        .join(",");
-      setResults(<p>Matching countries: {countriesList}</p>);
-    } else if (data.length === 1) {
-      const country = data[0];
-      const languages = Object.values(country.languages).join(",");
+      setResults(data)
+    }else{
+      setResults([])
+    } 
+    } catch (error) {
+      console.error('error fetching data:', error)
+      setResults([])
+    }
+  }
+
+  
 
       setResults(
         <div>
