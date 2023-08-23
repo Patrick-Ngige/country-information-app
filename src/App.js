@@ -7,5 +7,8 @@ function App() {
 
   const handleSearch = async () => {
     if (!searchQuery) return
+
+    const response = await fetch(`https://restcountries.com/v3.1/name/${searchQuery}`)
+    const data = await response.json()
   }
 }
