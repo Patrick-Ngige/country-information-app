@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./App.css";
+import "./index.css";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -29,7 +29,7 @@ function App() {
       setResults(
         <div>
           <h2>{country.name.common}</h2>
-          <p>Capital: {country.area} km^2</p>
+          <p>Capital: {country.capital} km^2</p>
           <p>Languages: {languages}</p>
           <img
             src={country.flags.png}
