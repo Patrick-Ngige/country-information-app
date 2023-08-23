@@ -20,6 +20,9 @@ function App() {
       setResults(
         <p>Matching countries: {countriesList}</p>
       )
+    } else if (data.length === 1) {
+      const country = data[0]
+      const languages = Object.values(country.languages).join(',')
     }
   }
 }
