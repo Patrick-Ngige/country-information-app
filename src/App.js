@@ -49,6 +49,7 @@ function App() {
       onChange={e => setSearchQuery(e.target.value)}
       />
       <button onClick={handleSearch}>Search</button>
+      <div className="results">{results}</div>
     </div>
   )
 }
