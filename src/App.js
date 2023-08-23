@@ -23,6 +23,15 @@ function App() {
     } else if (data.length === 1) {
       const country = data[0]
       const languages = Object.values(country.languages).join(',')
+
+      setResults(
+        <div>
+          <h2>{country.name.common}</h2>
+          <p>Capital: {country.area} km^2</p>
+          <p>Languages: {languages}</p>
+          <img src={country.flags.png} alt={`${country.name.common} Flags`} width="150" />
+        </div>
+      )
     }
   }
 }
