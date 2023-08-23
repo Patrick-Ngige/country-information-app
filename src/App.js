@@ -4,7 +4,7 @@ import axios from 'axios';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [results, setResults] = useState(null);
+  const [results, setResults] = useState([]);
 
   const handleSearch = async () => {
     if (!searchQuery) return;
