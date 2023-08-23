@@ -32,6 +32,10 @@ function App() {
           <img src={country.flags.png} alt={`${country.name.common} Flags`} width="150" />
         </div>
       )
+    } else {
+      setResults(
+        <p>No matching countries found.</p>
+      )
     }
   }
 }
